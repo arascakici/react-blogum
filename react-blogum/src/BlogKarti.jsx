@@ -1,4 +1,15 @@
 function BlogKarti({ yazi, onSil }) {
+  // Firestore'dan gelen tarihi formatla
+  const tarihFormat = yazi.tarih 
+    ? yazi.tarih.toDate().toLocaleString('tr-TR', {
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit'
+      }) 
+    : 'Az önce';
+
   return (
     <div style={{
       backgroundColor: 'var(--code-bg)',
@@ -14,15 +25,21 @@ function BlogKarti({ yazi, onSil }) {
     onMouseOver={(e) => e.currentTarget.style.transform = 'translateY(-3px)'}
     onMouseOut={(e) => e.currentTarget.style.transform = 'translateY(0)'}
     >
-      <h3 style={{ 
-        margin: '0 0 15px 0', 
-        fontSize: '22px', 
-        color: 'var(--text-h)',
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'baseline',
         borderBottom: '1px solid var(--border)',
+        marginBottom: '15px',
         paddingBottom: '10px'
       }}>
-        {yazi.baslik}
-      </h3>
+        <h3 style={{ margin: '0', fontSize: '22px', color: 'var(--text-h)' }}>
+          {yazi.baslik}
+        </h3>
+        <span style={{ fontSize: '13px', color: 'var(--text)', opacity: '0.8' }}>
+          🕒 {tarihFormat}
+        </span>
+      </div>
       
       <p style={{ 
         margin: '0 0 20px 0', 
