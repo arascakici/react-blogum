@@ -16,6 +16,9 @@ function Idolum() {
           alt="Lukas Cakici Portfolio" 
           style={{
             width: '100%', 
+            height: '450px',
+            objectFit: 'cover',
+            objectPosition: 'top',
             borderRadius: '16px', 
             boxShadow: 'var(--shadow)',
             border: '2px solid var(--border)',
