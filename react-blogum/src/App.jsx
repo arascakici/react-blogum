@@ -4,6 +4,7 @@ import AnaSayfa from "./AnaSayfa"
 import Hakkimda from "./Hakkimda"
 import Iletisim from "./Iletisim"
 import Hayallerim from "./Hayallerim"
+import Idolum from "./Idolum"
 import './App.css'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Link to="/hakkimda" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>Hakkımda</Link>
         <Link to="/iletisim" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>İletişim</Link>
         <Link to="/hayallerim" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>Hayallerim</Link>
+        <Link to="/idolum" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>İdolüm</Link>
         <button onClick={() => {
           setKaranlik(!karanlik)
           localStorage.setItem('karanlik', !karanlik)
@@ -38,6 +40,7 @@ function App() {
           <Route path="/hakkimda" element={<Hakkimda />} />
           <Route path="/iletisim" element={<Iletisim />} />
           <Route path="/hayallerim" element={<Hayallerim />} />
+          <Route path="/idolum" element={<Idolum />} />
         </Routes>
       </div>
     </BrowserRouter>
