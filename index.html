@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Benim Blogum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="nav">
+        <button onclick="karanlikMod()">🌙 Karanlık Mod</button>
+        <a href="index.html">Ana Sayfa</a>
+        <a href="hakkimda.html">Hakkımda</a>
+    </div>
+
+    <div class="iki-sutun">
+
+        <div class="sol">
+            <h1>Merhaba, Ben yks yi yapamayan kişi yani Aras Çakıcı</h1>
+            <img src="images.jpg" onclick="this.style.width = this.style.width === '500px' ? '300px' : '500px'" style="cursor:pointer">
+            <button onclick="document.getElementById('yazi').innerHTML = 'Merhaba! ben malım'">Bana Yaz!</button>
+            <p id="yazi">Bu benim kişisel blogum.</p>
+
+            <h2>Bana Mesaj Yaz</h2>
+            <input id="ad" type="text" placeholder="Adın ne?">
+            <br><br>
+            <input id="mesaj" type="text" placeholder="Mesajın ne?">
+            <br><br>
+            <button onclick="gonder()">Gönder</button>
+
+            <h2>Hakkımda</h2>
+            <p>İstanbul'da yaşıyorum ve web öğreniyorum.</p>
+
+            <h2>İlgi Alanlarım</h2>
+            <p>Müzik, film ve teknoloji.</p>
+
+            <h2>Son Blog Yazım</h2>
+            <p>Bugün web öğrenmeye başladım. HTML, CSS ve JavaScript öğrendim. Çok eğlenceliydi!</p>
+        </div>
+
+        <div class="sag">
+            <h2>Butona Kaç Kez Tıkladın?</h2>
+            <p id="sayac">0</p>
+            <button onclick="say()">Tıkla!</button>
+
+            <h2>Geri Sayım</h2>
+            <p id="geri">10</p>
+            <button onclick="geriSay()">Geri Say!</button>
+        </div>
+
+    </div>
+
+    <script>
+    var karanlik = localStorage.getItem('karanlik') === 'true';
+
+    if (karanlik) {
+        document.body.style.backgroundColor = '#1a1a1a';
+    }
+
+    function karanlikMod() {
+        if (karanlik === false) {
+            document.body.style.backgroundColor = '#1a1a1a';
+            karanlik = true;
+            localStorage.setItem('karanlik', 'true');
+        } else {
+            document.body.style.backgroundColor = '';
+            karanlik = false;
+            localStorage.setItem('karanlik', 'false');
+        }
+    }
+
+    function gonder() {
+        var ad = document.getElementById('ad').value;
+        var mesaj = document.getElementById('mesaj').value;
+        alert(ad + ' şunu yazdı: ' + mesaj);
+    }
+
+    var geriSayi = 10;
+    function geriSay() {
+        if (geriSayi > 0) {
+            geriSayi = geriSayi - 1;
+            document.getElementById('geri').innerHTML = geriSayi;
+        }
+    }
+
+    var sayi = 0;
+    function say() {
+        sayi = sayi + 1;
+        document.getElementById('sayac').innerHTML = sayi;
+    }
+    </script>
+</body>
+</html>

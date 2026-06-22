@@ -1,0 +1,97 @@
+body {
+            background-color: #dbdf05;
+            font-family: 'Poppins', sans-serif;
+            margin: 40px;
+            text-align: center;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .kart {
+            background-color: white;
+            width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        h1 {
+        color: #1a1a2e;
+        animation: gelsin 1s ease-in-out;
+        }
+
+        @keyframes gelsin {
+         from {
+        opacity: 0;
+        transform: translateY(-30px);
+        }
+        to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+        }
+        h2 { color: #16213e; }
+        p { color: #333333; }
+
+        button {
+            background-color: #ad4444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: rgb(185, 17, 17);
+            color: #01010e;
+            cursor: pointer;
+        }
+
+        img {
+            width: 300px;
+            border-radius: 10px;
+        }
+
+        input {
+            padding: 10px;
+            border: 2px solid #0000ff;
+            border-radius: 10px;
+            font-size: 16px;
+            width: 80%;
+            margin: 5px;
+        }
+
+        a { color: #00aa00; text-decoration: none; font-weight: bold; }
+        a:hover { color: #ff6600; transition: 0.3s; }
+        @media (max-width: 600px) {
+         .kart {
+        width: 90%;
+         }
+        }
+        .iki-sutun {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sol {
+    flex: 1;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.sag {
+    width: 300px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+}
