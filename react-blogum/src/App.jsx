@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom"
 import AnaSayfa from "./AnaSayfa"
 import Hakkimda from "./Hakkimda"
 import Iletisim from "./Iletisim"
+import Hayallerim from "./Hayallerim"
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Link to="/" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>Ana Sayfa</Link>
         <Link to="/hakkimda" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>Hakkımda</Link>
         <Link to="/iletisim" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>İletişim</Link>
+        <Link to="/hayallerim" style={{color: 'white', margin: '10px', textDecoration: 'none'}}>Hayallerim</Link>
         <button onClick={() => {
           setKaranlik(!karanlik)
           localStorage.setItem('karanlik', !karanlik)
@@ -35,6 +37,7 @@ function App() {
           <Route path="/" element={<AnaSayfa />} />
           <Route path="/hakkimda" element={<Hakkimda />} />
           <Route path="/iletisim" element={<Iletisim />} />
+          <Route path="/hayallerim" element={<Hayallerim />} />
         </Routes>
       </div>
     </BrowserRouter>
