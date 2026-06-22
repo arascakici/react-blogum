@@ -6,9 +6,7 @@ function AnaSayfa() {
   const [icerik, setIcerik] = useState("")
   const [yazilar, setYazilar] = useState(() => {
     const kayitli = localStorage.getItem('yazilar')
-    return kayitli ? JSON.parse(kayitli) : [
-      { id: 1, baslik: "İlk Blog Yazım", icerik: "Bugün web öğrenmeye başladım!" },
-      { id: 2, baslik: "React Öğreniyorum", icerik: "React çok güzelmiş!" },
+    return kayitli ? JSON.parse(kayitli) : []
     ]
   })
 
