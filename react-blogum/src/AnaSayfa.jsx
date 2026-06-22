@@ -54,17 +54,84 @@ function AnaSayfa() {
   }
 
   return (
-    <div>
-      <h1 className="animated-title">Blog Yazıları</h1>
-      <input value={baslik} onChange={(e) => setBaslik(e.target.value)} placeholder="Başlık yaz..." />
-      <br/>
-      <input value={icerik} onChange={(e) => setIcerik(e.target.value)} placeholder="İçerik yaz..." />
-      <br/>
-      <button onClick={yaziEkle} className="btn btn-green">Ekle!</button>
+    <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+      <h1 className="animated-title" style={{ paddingBottom: '10px', display: 'inline-block' }}>Blog Yazıları</h1>
+      
+      {/* Blog Ekleme Kartı */}
+      <div style={{
+        backgroundColor: 'var(--code-bg)',
+        padding: '30px',
+        borderRadius: '16px',
+        boxShadow: 'var(--shadow)',
+        marginBottom: '40px',
+        textAlign: 'left'
+      }}>
+        <h2 style={{ marginBottom: '20px', fontSize: '20px' }}>Yeni Bir Şeyler Paylaş</h2>
+        
+        <input 
+          value={baslik} 
+          onChange={(e) => setBaslik(e.target.value)} 
+          placeholder="Yazının başlığı..." 
+          style={{
+            width: '100%',
+            padding: '12px 15px',
+            marginBottom: '15px',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+            backgroundColor: 'var(--bg)',
+            color: 'var(--text-h)',
+            fontSize: '16px',
+            fontFamily: 'inherit',
+            boxSizing: 'border-box'
+          }}
+        />
+        
+        <textarea 
+          value={icerik} 
+          onChange={(e) => setIcerik(e.target.value)} 
+          placeholder="Neler düşünüyorsun?" 
+          rows="4"
+          style={{
+            width: '100%',
+            padding: '12px 15px',
+            marginBottom: '20px',
+            borderRadius: '8px',
+            border: '1px solid var(--border)',
+            backgroundColor: 'var(--bg)',
+            color: 'var(--text-h)',
+            fontSize: '16px',
+            fontFamily: 'inherit',
+            resize: 'vertical',
+            boxSizing: 'border-box'
+          }}
+        />
+        
+        <button 
+          onClick={yaziEkle} 
+          style={{
+            background: 'linear-gradient(270deg, #8b5cf6, #ec4899)',
+            color: 'white',
+            border: 'none',
+            padding: '12px 24px',
+            borderRadius: '8px',
+            fontSize: '16px',
+            fontWeight: 'bold',
+            cursor: 'pointer',
+            transition: 'transform 0.2s',
+            width: '100%'
+          }}
+          onMouseOver={(e) => e.target.style.transform = 'scale(1.02)'}
+          onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+        >
+          Paylaş 🚀
+        </button>
+      </div>
 
-      {yazilar.map(yazi => (
-        <BlogKarti key={yazi.id} yazi={yazi} onSil={yaziSil} />
-      ))}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        {yazilar.map(yazi => (
+          <BlogKarti key={yazi.id} yazi={yazi} onSil={yaziSil} />
+        ))}
+      </div>
     </div>
   )
 }
