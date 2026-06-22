@@ -55,7 +55,7 @@ function AnaSayfa() {
 
   return (
     <div>
-      <h1 style={{color: '#8b5cf6'}}>Blog Yazıları</h1>
+      <h1 className="animated-title">Blog Yazıları</h1>
       <input value={baslik} onChange={(e) => setBaslik(e.target.value)} placeholder="Başlık yaz..." />
       <br/>
       <input value={icerik} onChange={(e) => setIcerik(e.target.value)} placeholder="İçerik yaz..." />

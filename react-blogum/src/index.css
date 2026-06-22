@@ -109,3 +109,19 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+@keyframes gradient-text {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-title {
+  background: linear-gradient(270deg, #8b5cf6, #ec4899, #f43f5e);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-text 3s ease infinite;
+  text-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+  margin-bottom: 30px;
+}
