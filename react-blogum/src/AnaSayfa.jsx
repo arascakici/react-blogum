@@ -1,29 +1,61 @@
 import { useState, useEffect } from "react"
 import BlogKarti from "./BlogKarti"
+import { db } from "./firebase"
+import { collection, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp, query, orderBy } from "firebase/firestore"
 
 function AnaSayfa() {
   const [baslik, setBaslik] = useState("")
   const [icerik, setIcerik] = useState("")
-  const [yazilar, setYazilar] = useState(() => {
-    const kayitli = localStorage.getItem('yazilar')
-    return kayitli ? JSON.parse(kayitli) : []
-    ]
-  })
+  const [yazilar, setYazilar] = useState([])
+
+  // Firestore referansı
+  const yazilarCollectionRef = collection(db, "yazilar")
 
   useEffect(() => {
-    localStorage.setItem('yazilar', JSON.stringify(yazilar))
-  }, [yazilar])
+    // Verileri tarihe göre sıralayarak çekmek için query (sorgu)
+    const q = query(yazilarCollectionRef, orderBy("tarih", "desc"))
+    
+    // onSnapshot ile real-time (eşzamanlı) dinleme
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const dbYazilar = snapshot.docs.map(doc => ({
+        ...doc.data(),
+        id: doc.id
+      }))
+      setYazilar(dbYazilar)
+    })
 
-  function yaziEkle() {
+    // Component unmount olduğunda dinlemeyi durdur
+    return () => unsubscribe()
+  }, [])
+
+  async function yaziEkle() {
     if (baslik === "" || icerik === "") return
-    setYazilar([...yazilar, { id: Date.now(), baslik, icerik }])
-    setBaslik("")
-    setIcerik("")
+    
+    try {
+      await addDoc(yazilarCollectionRef, {
+        baslik: baslik,
+        icerik: icerik,
+        tarih: serverTimestamp()
+      })
+      setBaslik("")
+      setIcerik("")
+    } catch (error) {
+      console.error("Yazı eklenirken hata oluştu: ", error)
+    }
+  }
+
+  async function yaziSil(id) {
+    try {
+      const yaziDocRef = doc(db, "yazilar", id)
+      await deleteDoc(yaziDocRef)
+    } catch (error) {
+      console.error("Yazı silinirken hata oluştu: ", error)
+    }
   }
 
   return (
     <div>
-<h1 style={{color: '#8b5cf6'}}>Blog Yazıları</h1>
+      <h1 style={{color: '#8b5cf6'}}>Blog Yazıları</h1>
       <input value={baslik} onChange={(e) => setBaslik(e.target.value)} placeholder="Başlık yaz..." />
       <br/>
       <input value={icerik} onChange={(e) => setIcerik(e.target.value)} placeholder="İçerik yaz..." />
@@ -31,7 +63,7 @@ function AnaSayfa() {
       <button onClick={yaziEkle} className="btn btn-green">Ekle!</button>
 
       {yazilar.map(yazi => (
-        <BlogKarti key={yazi.id} yazi={yazi} onSil={(id) => setYazilar(yazilar.filter(y => y.id !== id))} />
+        <BlogKarti key={yazi.id} yazi={yazi} onSil={yaziSil} />
       ))}
     </div>
   )
